@@ -1,69 +1,49 @@
-var readlineSync = require("readlineSync");
+var readLineSync = require('readline-sync');
 
-var score = 0;
+var userName = readLineSync.question("What is Your Name?");
+
+console.log("welcome " + userName + " to Do YOU KNOW VIDHI?");
 
 var highScores = [
   {
-    name: "Vidhi",
-    score: 4,
+    name: "Dhruvik",
+    score: 3,
   },
   {
-    name: "Dhruvik",
-    sore: 3
+    name: "Dhruvi",
+    score: 3,
   },
 ]
 
-var question = [{
-  question: "Where do I live? ",
-  answer: "Gujarat"
-}, {
-  question: "what i am studying now? ",
-  answer: "Engineering"
-},
-{
-  question: "Where do I Study? ",
-  answer: "GEC"
-},
-{
-  question: "what is my favorite song?",
-  answer: "ilahi"
-},
-{
-  question: "what is my favorite place?",
-  answer: "My Home Town"
-}];
+var score = 0;
 
-function welcome() {
-  var userName = readline.quastion("What's your name?");
-  console.log("welcome " + username + " to DO YOU KNOW VIDHI?");
-}
+function play(question, answer) {
+  
+  var userAnswer = readLineSync.question(question);
 
-function play(quastion, answer) {
-  var userAns = readlineSync.question(question);
-  if (userAns.toUpperCase() === answer.toUppercase()) {
-    console.log("right!");
+  if (userAnswer.toUpperCase() === answer.toUpperCase()) {
+    console.log("Right!");
     score = score + 1;
+  } else {
+    console.log("Wrong!");
+    score = score - 1;
   }
-  else {
-    console.log("wrong!");
-  }
-  console.log("current score: ", score);
-  console.log("-------------")
+  console.log("your current score: ", score);
+  console.log("-----------------------")
 }
 
-function game() {
-  for (var i = 0; i < questions.length; i++) {
-    var currentQuestion = questions[i];
-    play(currentQuestion.question, currentQuestion.answer)
-  }
-}
-unction showScores() {
+play("where do i live?", "Gujarat");
+play("How old am i?", "19");
+play("where do i study? ", "Gec");
+play("what is my favorite song? ", "ilahi");
+play("what is favourite color?", "Black");
+
+function showScores() {
   console.log("YAY! You SCORED: ", score);
 
   console.log("Check out the high scores, if you should be there ping me and I'll update it");
 
   highScores.map(score => console.log(score.name, " : ", score.score))
 }
-welcome();
-game();
+
 showScores();
